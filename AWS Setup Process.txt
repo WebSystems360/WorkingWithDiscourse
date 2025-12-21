@@ -9,10 +9,8 @@ There are many places to make mistakes. Using a naming convention strategy that 
 
 IAM user: your-iam-user
 Policy: s3-discourse-policy-your-iam-user
-
 Uploads bucket: your-bucket-name-uploads
 Backups bucket: your-bucket-name-backups
-
 Distribution CDNs: cdn-yourdomain-subdomain and  s3-yourdomain-subdomain-uploads
 
 Discourse instance domain, IAM User, policy name, backups bucket name, uploads bucket name
