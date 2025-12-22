@@ -36,8 +36,8 @@ Use this for unbranded Cloudfront distributions. Your DISCOURSE_S3_REGION might 
   ## S3 storage config
   DISCOURSE_USE_S3: true
   DISCOURSE_S3_REGION:  us-east-1
-  DISCOURSE_S3_ACCESS_KEY_ID: key obfuscated
-  DISCOURSE_S3_SECRET_ACCESS_KEY: key obfuscated
+  DISCOURSE_S3_ACCESS_KEY_ID: obfuscated
+  DISCOURSE_S3_SECRET_ACCESS_KEY: obfuscated
   DISCOURSE_S3_CDN_URL: https://amazonassigned.cloudfront.net
   DISCOURSE_S3_BUCKET: your-bucket-name-uploads
   DISCOURSE_S3_BACKUP_BUCKET: your-bucket-name-backups
@@ -64,8 +64,8 @@ DISCOURSE_CDN_URL: https://discourse-cdn.yourdomain.com      CNAME  -->>    amaz
   ## S3 storage config
   DISCOURSE_USE_S3: true
   DISCOURSE_S3_REGION:  us-east-1
-  DISCOURSE_S3_ACCESS_KEY_ID: key obfuscated
-  DISCOURSE_S3_SECRET_ACCESS_KEY: key obfuscated
+  DISCOURSE_S3_ACCESS_KEY_ID: obfuscated
+  DISCOURSE_S3_SECRET_ACCESS_KEY: obfuscated
   DISCOURSE_S3_CDN_URL: https://s3-cdn.yourdomain.com   CNAME  -->>    s3-cdn-cloudfront.yourdomain.com
   DISCOURSE_S3_BUCKET: your-bucket-name-uploads
   DISCOURSE_S3_BACKUP_BUCKET: your-bucket-name-backups
