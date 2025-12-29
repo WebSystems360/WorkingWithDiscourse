@@ -1,4 +1,4 @@
-So you want to use AWS S3 for storage, CDN and… The following serves me well when setting up a new site on S3. Hopefully it will be useful to you as well. Please let me know if something needs an adjustment or does not make sense.
+So you want to use AWS's Amazon S3 for storage, Cloudfront for CDNs and ??? Hopefully this guide be helpful when configuring a new site on AWS. Please let me know if something needs an adjustment or does not make sense or??
 
 [Getting Started](#heading--getting-started)
 [Naming Strategy](#naming-strategy)
