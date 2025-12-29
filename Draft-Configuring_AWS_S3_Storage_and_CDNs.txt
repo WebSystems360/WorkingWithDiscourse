@@ -1,3 +1,5 @@
+The editing in draft mode is getting a bit wonky so I am publishing prematurely. Hopefully the wonkiness, love that word, will abate. For those up for reviewing and providing feedback, thanks in advance.
+
 So you want to use AWS's Amazon S3 for storage, Cloudfront for CDNs and ??? Hopefully this guide be helpful when configuring a new site on AWS. Please let me know if something needs an adjustment or does not make sense or??
 
 [Getting Started](#heading--getting-started)
@@ -93,7 +95,7 @@ Create and configure the backups bucket, uploads bucket, and the optional but us
 4. Amazon S3 > Buckets > Create bucket > General configuration > Confirm “ACLs disabled (recommended)” selection
 5. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Deselect “Block all public access” then Select “Block public access to buckets and objects granted through new public bucket or access point policies” and “Block public and cross-account access to buckets and objects through any public bucket or access point policies”
 6. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Turning off block all public access might result in this bucket and the objects within becoming public > Select “I acknowledge that the current settings might result in this bucket and the objects within becoming public.”
-7. Amazon S3 > Buckets > Create bucket > Bucket Versioning > Bucket Versioning > Select “Enable” Info: Bucket Versioning is required for “Lifecycle rules”
+7. Amazon S3 > Buckets > Create bucket > Bucket Versioning > Bucket Versioning > Select “Enable” **Info: Bucket Versioning is required for “Lifecycle rules”**
 8. Amazon S3 > Buckets > Create bucket > Select “Create bucket”
 
 ### [Lifecycle rules configuration](#lifecycle-rules-config)
@@ -134,7 +136,7 @@ Create and configure the backups bucket, uploads bucket, and the optional but us
 7. Amazon S3 > Buckets > Create bucket > Select “Create bucket”
 8. Amazon S3 > Buckets > Buckets screen > Select newly created bucket i.e. yourdomain-subdomain-uploads
 **Return to do step 9 after creating Distribution #2**
-9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy > Select Edit > Paste JSON from [Create distribution #2](#create-distribution-#2) 10. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > Select “Save changes”
+9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy > Select Edit > Paste JSON from [Create distribution #2](#create-distribution-#2) 11. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > Select “Save changes”
 10. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Access control list (ACL) > Select Edit > Everyone (public access) > Select “Read” >  When you grant access to the Everyone or Authenticated users group grantees, anyone in the world can access the objects in this bucket. Select “I understand the effects of these changes on my objects and buckets.” > Select “Save changes”
 
 ### [Create a configuration process bucket](#create-config-process-bucket) `a-origin-config-bucket`
@@ -168,15 +170,14 @@ Create two AWS S3 Cloudfront distributions. One to serve website assets and the 
 7. CloudFront > Distributions > Create distribution > Specify origin > Origin > S3 origin > Select "Browse S3" > Select the configuration process bucket "a-origin-config-bucket" > Select "Choose" > Select "Next"
 8. CloudFront > Distributions > Create distribution > Enable security > make your choices - for this guide > Select "Do not enable security protections" > Select "Next"
 9. CloudFront > Distributions > Create distribution > Review and create > Confirm "Review and create: is correct > Select "Create distribution" -> Newly created distribution information page should open in CloudFront > Distributions > Distribution ID
-10. Info: The distribution requires the Discourse instance domain as the origin!
-11. CloudFront > Distributions > Distribution ID > Origins > Select "Create origin" Info: The distribution requires the Discourse instance domain as the origin!
-12. CloudFront > Distributions > Distribution ID > Create origin > Settings > Origin domain > Enter discourse instance domain i.e. subdomain.yourdomain.tld > Select "Create origin"
-14. CloudFront > Distributions > Distribution ID > Behaviors > Select the lone behavior "Default (*)" > Select "Edit"
-15. CloudFront > Distributions > Distribution ID > Behaviors > Edit behavior > Settings > Origin and origin groups > Select the Custom origin "subdomain.yourdomain.tld" > Select "Save changes"
-16. CloudFront > Distributions > Distribution ID > Origins > Select the original origin "a-origin-config-bucket.s3.us-east-1.amazonaws.com" > Select "Delete" Info: The deployment must be complete, see CloudFront > Distributions > Distribution ID > Details > Last modified
-**If using a branded CDN URL** -> Step 17
-17. CloudFront > Distributions > Distribution ID > Alternate domain names > Select "Add domain"
-18. CloudFront > Distributions > Distribution ID > Alternate domain names > Add domain > Configure domains > Domains > Domains to serve > Enter the DISCOURSE_CDN_URL i.e. discourse-cdn.yourdomain.tld > Select "Next"
+10. CloudFront > Distributions > Distribution ID > Origins > Select "Create origin" **Info: The distribution requires the Discourse instance domain as the origin!**
+11. CloudFront > Distributions > Distribution ID > Create origin > Settings > Origin domain > Enter discourse instance domain i.e. subdomain.yourdomain.tld > Select "Create origin"
+12. CloudFront > Distributions > Distribution ID > Behaviors > Select the lone behavior "Default (*)" > Select "Edit"
+13. CloudFront > Distributions > Distribution ID > Behaviors > Edit behavior > Settings > Origin and origin groups > Select the Custom origin "subdomain.yourdomain.tld" > Select "Save changes"
+14. CloudFront > Distributions > Distribution ID > Origins > Select the original origin "a-origin-config-bucket.s3.us-east-1.amazonaws.com" > Select "Delete" **Info: The deployment must be complete**, see CloudFront > Distributions > Distribution ID > Details > Last modified
+**If using a branded CDN URL** -> Step 15
+15. CloudFront > Distributions > Distribution ID > Alternate domain names > Select "Add domain"
+16. CloudFront > Distributions > Distribution ID > Alternate domain names > Add domain > Configure domains > Domains > Domains to serve > Enter the DISCOURSE_CDN_URL i.e. discourse-cdn.yourdomain.tld > Select "Next"
 
 > Incomplete: Alternate domain names: discourse-cdn.yourdomain.tld
  
@@ -200,11 +201,12 @@ Create two AWS S3 Cloudfront distributions. One to serve website assets and the 
 8. CloudFront > Distributions > Create distribution > Enable security > make your choices - for this guide > Select "Do not enable security protections" > Select "Next"
 9. CloudFront > Distributions > Create distribution > Review and create > Confirm "Review and create: is correct > Select "Create distribution" -> Newly created distribution information page should open in CloudFront > Distributions > Distribution ID
 10. CloudFront > Distributions > Distribution ID > Origins > Select the origin > Select "Edit"
-11. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > ! You must allow access to CloudFront using this policy ... > Select "Copy policy" > Go to [Create the uploads bucket](#create-uploads-bucket) 9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy
+11. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > ! *You must allow access to CloudFront using this policy*... > Select "Copy policy" > Go to [Create the uploads bucket](#create-uploads-bucket) 9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy
 
 > Incomplete: Alternate domain names: s3-cdn.yourdomain.tld
 
 ## [Discourse Configuration](#discourse-configuration)
+**Current as of Discourse version:** 2025.12.0-latest
 
 Make these changes in Discourse [Admin UI](https://discourseinstance.yourdomain.com/admin/)
 
@@ -244,7 +246,7 @@ DISCOURSE_BACKUP_LOCATION: s3
 
 If you prefer to use yourdomain.com based URLs for the CDNs you need to make some DNS changes and adjust your CDN URLs.
 
-**Note:** Don’t forget to add discourse-cdn.yourdomain.com and s3-cdn.yourdomain.com as a domain name in “Alternate domain names” for their respective Cloudfront distributions.
+**Tip:** Don’t forget to add discourse-cdn.yourdomain.com and s3-cdn.yourdomain.com as a domain name in “Alternate domain names” for their respective Cloudfront distributions.
 
 DNS config if you want to use domain branded Cloudfront distributions.
 
@@ -253,14 +255,14 @@ DNS config if you want to use domain branded Cloudfront distributions.
 ```
 Existing record:	A   discourseinstance.yourdomain.com   instance ip  Note: This is the existing Discourse install ip.
 New record:		A   discourse-cdn-cloudfront.yourdomain.com   instance ip
-New record: 		CNAME discourse-cdn.yourdomain.com  -->   amazonassigned.cloudfront.net
+New record: 		CNAME discourse-cdn.yourdomain.com  ->   amazonassigned.cloudfront.net
 ```
 
 **DISCOURSE_S3_CDN_URL**
 
 ```
-New record:		CNAME s3-cdn-cloudfront.yourdomain.com  -->   amazonassigned.cloudfront.net
-New record: 	CNAME  s3-cdn.yourdomain.com  -->   s3-cdn-cloudfront.yourdomain.com
+New record:		CNAME s3-cdn-cloudfront.yourdomain.com  ->   amazonassigned.cloudfront.net
+New record: 	CNAME  s3-cdn.yourdomain.com  ->   s3-cdn-cloudfront.yourdomain.com
 ```
 
 ## [Edit Config (app.yml) Branded URLs](#edit-config-branded)
@@ -320,11 +322,13 @@ rake s3:upload_assets
 rake s3:expire_missing_assets
 ```
 
-If the rakes complete without errors then you are good to go. Move onto configuring Lifecycle rules for your-bucket-name-backups.
+If the rakes complete without errors then you are good to go.
 
-On some sites the initial rebuild will fail with an error relating to s3:upload_assets. If this happens comment out or remove
+On some sites the initial rebuild will fail with an error relating to s3:upload_assets. If this happens,
 
-after_assets_precompile section:
+check "read" setting on uploads bucket. If correctly set then,
+
+comment out or remove the after_assets_precompile section:
 
 ```
   after_assets_precompile:
@@ -339,7 +343,7 @@ and run ./launcher rebuild app again. Then run “rake s3:upload_assets” and “rake
 
 If both of the rakes complete without errors then re-add or uncomment the after_assets_precompile section, rebuild again and do the all the rakes listed above.
 
-If either of the rakes give an error or the rebuild fails again you have something wrong in your app.yml, AWS S3 configs and/or DNS records. Happy hunting! :slight_smile:
+If either of the rakes give an error or the rebuild fails again you have something wrong in your app.yml and/or AWS S3 configs and/or DNS records. Happy hunting! :slight_smile:
 
 
 
@@ -372,12 +376,14 @@ Discourse Configuration FAQ
 ## [To-Do](#todo)
 
 1. Initial feedback based post publish edits
-2. Confirm approach in Cleanup rule
-3. Better title
-4. Distribution #1 **Need  instructions** Alternate domain names: discourse-cdn.yourdomain.tld 
-5. Distribution #2 **Need  instructions** Alternate domain names: s3-cdn.yourdomain.tld 
-6. Create/find list of Discourse hosts
-7. Add screenshots
-8. Wrap initial round of edits
-9. Build FAQ
-10. Publish Discourse version here and in resource docs
+2. [s]Confirm approach in Cleanup rule[/s]
+3. Is there a more efficient way to replace a-origin-config-bucket with subdomain.yourdomain.tld in [Create distribution #1](#create-distribution-#1) ???
+4. Better title
+5. Distribution #1 **Need  instructions** Alternate domain names: discourse-cdn.yourdomain.tld 
+6. Distribution #2 **Need  instructions** Alternate domain names: s3-cdn.yourdomain.tld 
+7. Create/find list of Discourse hosts
+8. Add screenshots
+9. Wrap initial round of edits
+10. Build FAQ
+11. Publish Discourse version [s]here[/s and in resource docs
+12. Update AWS_S3_Config.txt, s3-discourse-policy-your-iam-user.txt, AWS_S3_Config_Process.txt, Guide_AWS_S3_Config-sandbox.websystems360.txt, s3-discourse-policy-websystems360-sandbox.txt   
