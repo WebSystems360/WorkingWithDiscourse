@@ -1,4 +1,4 @@
-So you want to use AWS S3 for storage, CDN and… The following serves me well when setting up a new site on S3. Hopefully it will be useful to you as well. Please let me know if something needs an adjustment or does not make sense.
+So you want to use AWS S3 for storage, CDN andâ€¦ The following serves me well when setting up a new site on S3. Hopefully it will be useful to you as well. Please let me know if something needs an adjustment or does not make sense.
 
 [Getting Started](#heading--getting-started)
 [Naming Strategy](#naming-strategy)
@@ -53,7 +53,7 @@ Use the default settings in the AWS configuration pages unless instructed to do 
 * Discourse instance domain: subdomain.yourdomain.tld (subdomain.yourdomain.tld including www.yourdomain.tld)
 * IAM user: yourdomain-subdomain (yourdomain-discourse, yourdomain-forum or Discourse in apex/root: yourdomain-tld-www )
 * Policy for IAM user: s3-discourse-policy-yourdomain-subdomain
-* Uploads bucket: yourdomain-subdomain-uploads Note: Don’t forget to set “Everyone (public access)” to “Read” in Bucket>Permissions: Access control list-(ACL) Access control list (ACL)-Grantee.
+* Uploads bucket: yourdomain-subdomain-uploads Note: Donâ€™t forget to set â€œEveryone (public access)â€ to â€œReadâ€ in Bucket>Permissions: Access control list-(ACL) Access control list (ACL)-Grantee.
 * Backups bucket: yourdomain-subdomain-backups
 * Distribution CDNs: cdn-yourdomain-subdomain and s3-yourdomain-subdomain-uploads
 * Configuration process bucket: a-origin-config-bucket
@@ -87,14 +87,14 @@ Create and configure the backups bucket, uploads bucket, and the optional but us
 
 ### [Create the backups bucket](#create-backups-bucket) `yourdomain-subdomain-backups`
 
-1. Go to Amazon S3 [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select “[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)”
-2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm “General Purpose” selection
+1. Go to Amazon S3 [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select â€œ[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)â€
+2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm â€œGeneral Purposeâ€ selection
 3. Amazon S3 > Buckets > Create bucket > General configuration > Bucket name > Enter backups bucket name i.e. yourdomain-subdomain-backups
-4. Amazon S3 > Buckets > Create bucket > General configuration > Confirm “ACLs disabled (recommended)” selection
-5. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Deselect “Block all public access” then Select “Block public access to buckets and objects granted through new public bucket or access point policies” and “Block public and cross-account access to buckets and objects through any public bucket or access point policies”
-6. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Turning off block all public access might result in this bucket and the objects within becoming public > Select “I acknowledge that the current settings might result in this bucket and the objects within becoming public.”
-7. Amazon S3 > Buckets > Create bucket > Bucket Versioning > Bucket Versioning > Select “Enable” Info: Bucket Versioning is required for “Lifecycle rules”
-8. Amazon S3 > Buckets > Create bucket > Select “Create bucket”
+4. Amazon S3 > Buckets > Create bucket > General configuration > Confirm â€œACLs disabled (recommended)â€ selection
+5. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Deselect â€œBlock all public accessâ€ then Select â€œBlock public access to buckets and objects granted through new public bucket or access point policiesâ€ and â€œBlock public and cross-account access to buckets and objects through any public bucket or access point policiesâ€
+6. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Turning off block all public access might result in this bucket and the objects within becoming public > Select â€œI acknowledge that the current settings might result in this bucket and the objects within becoming public.â€
+7. Amazon S3 > Buckets > Create bucket > Bucket Versioning > Bucket Versioning > Select â€œEnableâ€ Info: Bucket Versioning is required for â€œLifecycle rulesâ€
+8. Amazon S3 > Buckets > Create bucket > Select â€œCreate bucketâ€
 
 ### [Lifecycle rules configuration](#lifecycle-rules-config)
 **Backup Retention Rule**
@@ -125,24 +125,24 @@ Create and configure the backups bucket, uploads bucket, and the optional but us
 
 ### [Create the uploads bucket](#create-uploads-bucket) `yourdomain-subdomain-uploads`
 
-1. Go to Amazon S3 > [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select “[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)”
-2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm “General Purpose” selection
+1. Go to Amazon S3 > [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select â€œ[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)â€
+2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm â€œGeneral Purposeâ€ selection
 3. Amazon S3 > Buckets > Create bucket > General configuration > Bucket name > Enter uploads bucket name i.e. yourdomain-subdomain-uploads
-4. Amazon S3 > Buckets > Create bucket > General configuration Select “ACLs enabled”
-5. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Deselect “Block all public access” then Select “Block public access to buckets and objects granted through new public bucket or access point policies” and “Block public and cross-account access to buckets and objects through any public bucket or access point policies”
-6. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Turning off block all public access might result in this bucket and the objects within becoming public > Select “I acknowledge that the current settings might result in this bucket and the objects within becoming public.”
-7. Amazon S3 > Buckets > Create bucket > Select “Create bucket”
+4. Amazon S3 > Buckets > Create bucket > General configuration Select â€œACLs enabledâ€
+5. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Deselect â€œBlock all public accessâ€ then Select â€œBlock public access to buckets and objects granted through new public bucket or access point policiesâ€ and â€œBlock public and cross-account access to buckets and objects through any public bucket or access point policiesâ€
+6. Amazon S3 > Buckets > Create bucket > Block Public Access settings for this bucket > Turning off block all public access might result in this bucket and the objects within becoming public > Select â€œI acknowledge that the current settings might result in this bucket and the objects within becoming public.â€
+7. Amazon S3 > Buckets > Create bucket > Select â€œCreate bucketâ€
 8. Amazon S3 > Buckets > Buckets screen > Select newly created bucket i.e. yourdomain-subdomain-uploads
 **Return to do step 9 after creating Distribution #2**
-9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy > Select Edit > Paste JSON from [Create distribution #2](#create-distribution-#2) 10. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > Select “Save changes”
-10. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Access control list (ACL) > Select Edit > Everyone (public access) > Select “Read” >  When you grant access to the Everyone or Authenticated users group grantees, anyone in the world can access the objects in this bucket. Select “I understand the effects of these changes on my objects and buckets.” > Select “Save changes”
+9. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Bucket policy > Select Edit > Paste JSON from [Create distribution #2](#create-distribution-#2) 10. CloudFront > Distributions > Distribution ID > Edit origin > Origin access control > Select â€œSave changesâ€
+10. Amazon S3 > Buckets > yourdomain-subdomain-uploads > Permissions > Access control list (ACL) > Select Edit > Everyone (public access) > Select â€œReadâ€ >  When you grant access to the Everyone or Authenticated users group grantees, anyone in the world can access the objects in this bucket. Select â€œI understand the effects of these changes on my objects and buckets.â€ > Select â€œSave changesâ€
 
 ### [Create a configuration process bucket](#create-config-process-bucket) `a-origin-config-bucket`
 Create a bucket to be used during Distribution #1 configuration process. Name and configuration are unimportant since the bucket is only used temporarily as an initial origin which will be deleted during the configuration process.
-1. Go to Amazon S3 > [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select “[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)”
-2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm “General Purpose” selection
+1. Go to Amazon S3 > [Buckets](https://us-east-1.console.aws.amazon.com/s3/buckets?region=us-east-1) > Select â€œ[Create bucket](https://us-east-1.console.aws.amazon.com/s3/bucket/create?region=us-east-1)â€
+2. Amazon S3 > Buckets > Create bucket > General configuration > Confirm â€œGeneral Purposeâ€ selection
 3. Amazon S3 > Buckets > Create bucket > General configuration > Bucket name > Enter uploads bucket name i.e. a-origin-config-bucket
-4. Toggle through the configuration pages and “Create bucket”
+4. Toggle through the configuration pages and â€œCreate bucketâ€
 
 ## [CloudFront Distributions](#cloudFront-distributions)
 
@@ -213,7 +213,7 @@ Make these changes in Discourse [Admin UI](https://discourseinstance.yourdomain.
 2. Backup with uploads > Select "Include uploads in scheduled backups. Disabling this will only backup the database."
 
 **S3 Settings** /admin/site_settings/category/all_results?filter=S3
-1. S3 use CDN URL for all uploads > Select “Use CDN URL for all the files uploaded to s3 instead of only for images.” (Discourse ships deselected)
+1. S3 use CDN URL for all uploads > Select â€œUse CDN URL for all the files uploaded to s3 instead of only for images.â€ (Discourse ships deselected)
 
 ### [Edit Config (app.yml) Unbranded URLs](#edit-config-unbranded)
 
@@ -244,7 +244,7 @@ DISCOURSE_BACKUP_LOCATION: s3
 
 If you prefer to use yourdomain.com based URLs for the CDNs you need to make some DNS changes and adjust your CDN URLs.
 
-**Note:** Don’t forget to add discourse-cdn.yourdomain.com and s3-cdn.yourdomain.com as a domain name in “Alternate domain names” for their respective Cloudfront distributions.
+**Note:** Donâ€™t forget to add discourse-cdn.yourdomain.com and s3-cdn.yourdomain.com as a domain name in â€œAlternate domain namesâ€ for their respective Cloudfront distributions.
 
 DNS config if you want to use domain branded Cloudfront distributions.
 
@@ -335,7 +335,7 @@ after_assets_precompile section:
             - sudo -E -u discourse bundle exec rake s3:expire_missing_assets
 ```
 
-and run ./launcher rebuild app again. Then run “rake s3:upload_assets” and “rake s3:expire_missing_assets”.
+and run ./launcher rebuild app again. Then run â€œrake s3:upload_assetsâ€ and â€œrake s3:expire_missing_assetsâ€.
 
 If both of the rakes complete without errors then re-add or uncomment the after_assets_precompile section, rebuild again and do the all the rakes listed above.
 
@@ -380,4 +380,5 @@ Discourse Configuration FAQ
 7. Add screenshots
 8. Wrap initial round of edits
 9. Build FAQ
+
 10. Publish Discourse version here and in resource docs
