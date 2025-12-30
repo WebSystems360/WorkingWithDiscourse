@@ -1,3 +1,7 @@
+
+Update Needed!
+
+
 Make these your own
   IAM user: your-iam-user
   Policy: s3-discourse-policy-your-iam-user
@@ -78,7 +82,7 @@ Create distribution #2
 
 Discourse Configuration
 
-Visit your admin UI(https://discourseinstance.yourdomain.tld/admin/site_settings/category/all_results?filter=S3) then enable "S3 use CDN URL for all uploads" by selecting ìUse CDN URL for all the files uploaded to s3 instead of only for images.î (Discourse ships deselected)
+Visit your admin UI(https://discourseinstance.yourdomain.tld/admin/site_settings/category/all_results?filter=S3) then enable "S3 use CDN URL for all uploads" by selecting ‚ÄúUse CDN URL for all the files uploaded to s3 instead of only for images.‚Äù (Discourse ships deselected)
 
 Edit your app.yml making the changes below for branded URLs or unbranded Cloudfront URLs.
 
